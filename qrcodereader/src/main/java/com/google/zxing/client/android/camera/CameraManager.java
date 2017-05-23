@@ -270,6 +270,7 @@ public final class CameraManager {
       rect.bottom = rect.bottom * cameraResolution.y / screenResolution.y;
       framingRectInPreview = rect;
     }
+//    Log.i(TAG,"Calculated framing rect in preview: " + framingRectInPreview);
     return framingRectInPreview;
   }
 
