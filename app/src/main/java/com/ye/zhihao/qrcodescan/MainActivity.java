@@ -1,6 +1,8 @@
 package com.ye.zhihao.qrcodescan;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,11 +21,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mBtnMain = (Button) findViewById(R.id.btn_main);
         mBtnMain.setOnClickListener(this);
-
+        checkPermissions();
     }
 
     @Override
     public void onClick(View v) {
         startActivity(new Intent(this, CaptureActivity.class));
+    }
+
+    private void checkPermissions() {
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1);
+        }
     }
 }

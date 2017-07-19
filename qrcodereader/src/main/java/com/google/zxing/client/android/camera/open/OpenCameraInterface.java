@@ -48,20 +48,23 @@ public final class OpenCameraInterface {
       Log.w(TAG, "No cameras!");
       return null;
     }
-
+    //是否有指定使用的摄像头
     boolean explicitRequest = cameraId >= 0;
 
     Camera.CameraInfo selectedCameraInfo = null;
     int index;
     if (explicitRequest) {
+      //如果有指定的摄像头，则获取指定的摄像头信息
       index = cameraId;
       selectedCameraInfo = new Camera.CameraInfo();
       Camera.getCameraInfo(index, selectedCameraInfo);
     } else {
       index = 0;
       while (index < numCameras) {
+        //如果没有指定摄像头，刚遍历所有摄像头并获取第一个后置摄像头
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         Camera.getCameraInfo(index, cameraInfo);
+        //Camera.CameraInfo.CAMERA_FACING_BACK
         CameraFacing reportedFacing = CameraFacing.values()[cameraInfo.facing];
         if (reportedFacing == CameraFacing.BACK) {
           selectedCameraInfo = cameraInfo;
@@ -74,6 +77,7 @@ public final class OpenCameraInterface {
     Camera camera;
     if (index < numCameras) {
       Log.i(TAG, "Opening camera #" + index);
+      //打开摄像头
       camera = Camera.open(index);
     } else {
       if (explicitRequest) {
