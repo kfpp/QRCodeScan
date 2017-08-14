@@ -39,6 +39,10 @@ final class InactivityTimer {
   private boolean registered;
   private AsyncTask<Object,Object,Object> inactivityTask;
 
+  /**
+   * 无操作定时器
+   * @param activity
+   */
   InactivityTimer(Activity activity) {
     this.activity = activity;
     powerStatusReceiver = new PowerStatusReceiver();

@@ -41,6 +41,10 @@ final class AmbientLightManager implements SensorEventListener {
   private CameraManager cameraManager;
   private Sensor lightSensor;
 
+  /**
+   * 环境灯Manager，在环境太暗的时候开灯，够亮的时候关灯
+   * @param context
+   */
   AmbientLightManager(Context context) {
     this.context = context;
   }

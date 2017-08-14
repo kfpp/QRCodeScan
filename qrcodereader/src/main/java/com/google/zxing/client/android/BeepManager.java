@@ -44,6 +44,10 @@ final class BeepManager implements MediaPlayer.OnErrorListener, Closeable {
   private boolean playBeep;
   private boolean vibrate;
 
+  /**
+   * 扫描成功提示间和震动Manager
+   * @param activity
+   */
   BeepManager(Activity activity) {
     this.activity = activity;
     this.mediaPlayer = null;

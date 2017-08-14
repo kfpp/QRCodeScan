@@ -26,6 +26,7 @@ import android.util.Log;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
@@ -58,6 +59,7 @@ final class DecodeHandler extends Handler {
     } else if (message.what == R.id.quit) {
       running = false;
       Looper.myLooper().quit();
+      com.google.zxing.MultiFormatWriter writer = new MultiFormatWriter();
     }
   }
 
@@ -73,6 +75,7 @@ final class DecodeHandler extends Handler {
     long start = System.currentTimeMillis();
     Result rawResult = null;
 
+      //修改：叶，按网上教程处理竖屏后条形码的识别
     byte[] rotatedData = new byte[data.length];
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++)

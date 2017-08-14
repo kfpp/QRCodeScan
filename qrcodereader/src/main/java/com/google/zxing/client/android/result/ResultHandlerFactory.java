@@ -16,6 +16,8 @@
 
 package com.google.zxing.client.android.result;
 
+import android.util.Log;
+
 import com.google.zxing.Result;
 import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.client.result.ParsedResult;
@@ -59,6 +61,7 @@ public final class ResultHandlerFactory {
   }
 
   private static ParsedResult parseResult(Result rawResult) {
+    Log.d("ResultHandlerFactory", rawResult.getText());
     return ResultParser.parseResult(rawResult);
   }
 }

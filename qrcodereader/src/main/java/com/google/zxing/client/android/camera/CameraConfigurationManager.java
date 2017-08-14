@@ -150,21 +150,25 @@ final class CameraConfigurationManager {
 
     initializeTorch(parameters, prefs, safeMode);
 
+
     CameraConfigurationUtils.setFocus(
-        parameters,
-        prefs.getBoolean(PreferencesActivity.KEY_AUTO_FOCUS, true),
-        prefs.getBoolean(PreferencesActivity.KEY_DISABLE_CONTINUOUS_FOCUS, true),
-        safeMode);
+            parameters,
+            prefs.getBoolean(PreferencesActivity.KEY_AUTO_FOCUS, true),               //自动对焦
+            prefs.getBoolean(PreferencesActivity.KEY_DISABLE_CONTINUOUS_FOCUS, true), //持续对焦
+            safeMode);
 
     if (!safeMode) {
+      //反色
       if (prefs.getBoolean(PreferencesActivity.KEY_INVERT_SCAN, false)) {
         CameraConfigurationUtils.setInvertColor(parameters);
       }
 
+      //条形码场景匹配 ？？？  什么来的
       if (!prefs.getBoolean(PreferencesActivity.KEY_DISABLE_BARCODE_SCENE_MODE, true)) {
         CameraConfigurationUtils.setBarcodeSceneMode(parameters);
       }
 
+      //测距
       if (!prefs.getBoolean(PreferencesActivity.KEY_DISABLE_METERING, true)) {
         CameraConfigurationUtils.setVideoStabilization(parameters);
         CameraConfigurationUtils.setFocusArea(parameters);
